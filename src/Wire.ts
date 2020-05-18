@@ -10,4 +10,8 @@ export class Wire implements OutputProvider {
   output(): boolean {
     return this.state;
   }
+
+  tick(): void {
+
+  }
 }
