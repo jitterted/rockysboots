@@ -4,4 +4,8 @@ export class Player implements OutputProvider {
   output(): boolean {
     return true;
   }
+
+  tick() {
+
+  }
 }

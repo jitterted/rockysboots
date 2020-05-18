@@ -2,9 +2,10 @@ import {OutputProvider} from "./OutputProvider";
 
 export class Wire implements OutputProvider {
   state: boolean = false;
+  input: OutputProvider;
 
-  apply(input: OutputProvider): void {
-    this.state = input.output();
+  connect(input: OutputProvider): void {
+    this.input = input;
   }
 
   output(): boolean {
@@ -12,6 +13,6 @@ export class Wire implements OutputProvider {
   }
 
   tick(): void {
-
+    this.state = this.input.output();
   }
 }
