@@ -1,0 +1,12 @@
+node_modules
+bower_components
+
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Ignore built ts files
+dist/**/*
