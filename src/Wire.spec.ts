@@ -11,14 +11,17 @@ test('electricity from input after no cycles is not yet at output', () => {
   wire.connect(player);
   expect(wire.output()).toBeFalsy();
 });
-//
-// test('electricity from input after 1 cycle is available at output', () => {
-//   const wire = new Wire();
-//   const player = new Player();
-//   wire.connect(player);
-//   wire.tick();
-//   expect(wire.output()).toBeTruthy();
-// });
+
+test('electricity from input after 1 cycle is available at output', () => {
+  const wire = new Wire({id: '21'});
+  const player = new Player({id: '32'});
+  wire.connect(player);
+
+  const oldWorld = new World();
+  oldWorld.add(player);
+  const newWire = wire.tick(oldWorld);
+  expect(newWire.output()).toBeTruthy();
+});
 
 
 /*
