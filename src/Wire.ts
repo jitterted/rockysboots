@@ -1,18 +1,19 @@
 import {Component} from "./Component";
 import {World} from "./World";
+import {ComponentId} from "./ComponentId";
 
 export class Wire extends Component {
   state: boolean = false;
-  inputId: string;
+  inputId: ComponentId;
 
-  constructor(id: string, inputId?: string, state?: boolean) {
+  constructor(id: ComponentId, inputId?: ComponentId, state?: boolean) {
     super(id);
     this.inputId = inputId;
     this.state = state || false;
   }
 
-  connect(inputId: string): void {
-    this.inputId = inputId;
+  connect(input: Component): void {
+    this.inputId = input.id;
   }
 
   output(): boolean {

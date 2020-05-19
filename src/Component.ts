@@ -1,7 +1,9 @@
-export abstract class Component {
-  id: string;
+import {ComponentId} from "./ComponentId";
 
-  constructor(id: string) {
+export abstract class Component {
+  id: ComponentId;
+
+  constructor(id: ComponentId) {
     this.id = id;
   }
 

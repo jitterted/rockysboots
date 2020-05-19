@@ -2,13 +2,15 @@ import {Empty} from "./Empty";
 import {Wire} from "./Wire";
 import {World} from "./World";
 import {Component} from "./Component";
+import {Player} from "./Player";
+import {ComponentId} from "./ComponentId";
 
-// test('electricity from input after no cycles is not yet at output', () => {
-//   const wire = new Wire();
-//   const player = new Player();
-//   wire.connect(player);
-//   expect(wire.output()).toBeFalsy();
-// });
+test('electricity from input after no cycles is not yet at output', () => {
+  const wire = new Wire({id: '21'});
+  const player = new Player({id: '32'});
+  wire.connect(player);
+  expect(wire.output()).toBeFalsy();
+});
 //
 // test('electricity from input after 1 cycle is available at output', () => {
 //   const wire = new Wire();
@@ -18,12 +20,6 @@ import {Component} from "./Component";
 //   expect(wire.output()).toBeTruthy();
 // });
 
-// function tickAll(player: Player, empty: Empty, wire1: Wire, wire2: Wire) {
-//   player.tick();
-//   empty.tick();
-//   wire1.tick();
-//   wire2.tick();
-// }
 
 /*
 
@@ -85,15 +81,15 @@ import {Component} from "./Component";
 // });
 
 test("wire returns new wire instance with updated state based on old world", () => {
-  const wire = new Wire('73');
+  const wire = new Wire({id: '73'});
   const alwaysTrueOutput = new class extends Component {
     output() {
       return true;
     }
-  }('ignore');
+  }({id: 'ignore'});
 
   const oldWorld = new class extends World {
-    find(id: string) {
+    find(id: ComponentId) {
       return alwaysTrueOutput;
     }
   }();
@@ -102,9 +98,9 @@ test("wire returns new wire instance with updated state based on old world", () 
 })
 
 test('with no player, wire output has no electricity', () => {
-  const wire = new Wire('ignore');
-  const empty = new Empty('ignore');
-  wire.connect(empty.id);
+  const wire = new Wire({id: 'ignore'});
+  const empty = new Empty({id: 'ignore'});
+  wire.connect(empty);
   expect(wire.output()).toBeFalsy();
 });
 
