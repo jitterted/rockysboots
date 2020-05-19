@@ -13,11 +13,13 @@ export class World {
     return this.componentMap.get(id.id);
   }
 
-//   nextWorld() {
-  // newWorld = new World()
-  // loop for all components in oldworld
-  //   newComponent = component.nextCycle(oldWorld)
-  ///           return new Wire(oldWorld.find(input.id).output())
-  //   newWorld.add(newComponent)
+  nextCycle(): World {
+    const newWorld = new World();
 
+    this.componentMap.forEach((value: Component) => {
+      newWorld.add(value.tick(this));
+    })
+
+    return newWorld;
+  }
 }

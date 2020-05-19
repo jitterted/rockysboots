@@ -23,69 +23,13 @@ test('electricity from input after 1 cycle is available at output', () => {
   expect(newWire.output()).toBeTruthy();
 });
 
-
-/*
-
- Tick tells the wire: take state from INPUT and make available via OUTPUT
-
- Tick: 0
- F-----F F<-----T [P]
-
- Tick: 1
- F-----T T<-----T [P]
-
- Tick: 2
- T-----T T<-----T [P]
-
- Tick: 3 - apply "empty"
- T<----T T<-----F [E]
-
- Tick: 4
- T<-----F F<-----F [E]
-
- Tick: 5
- F<----F F<-----F [E]
-
-*/
-// test('2 cycle/tick propagation', () => {
-//   const player = new Player();
-//   const empty = new Empty();
-//   const wire1 = new Wire();
-//   const wire2 = new Wire();
-//
-//   wire2.connect(wire1);
-//
-//   expect(wire1.output()).toBeFalsy();
-//   expect(wire2.output()).toBeFalsy();
-//
-//   wire1.connect(player);
-//
-//   tickAll(player, empty, wire1, wire2);
-//
-//   expect(wire1.output()).toBeTruthy();
-//   expect(wire2.output()).toBeFalsy();
-//
-//   tickAll(player, empty, wire1, wire2);
-//
-//   expect(wire1.output()).toBeTruthy();
-//   expect(wire2.output()).toBeTruthy();
-//
-//   wire1.connect(empty);
-//
-//   tickAll(player, empty, wire1, wire2);
-//
-//   expect(wire1.output()).toBeFalsy();
-//   expect(wire2.output()).toBeTruthy();
-//
-//   tickAll(player, empty, wire1, wire2);
-//
-//   expect(wire1.output()).toBeFalsy();
-//   expect(wire2.output()).toBeFalsy();
-// });
-
 test("wire returns new wire instance with updated state based on old world", () => {
   const wire = new Wire({id: '73'});
   const alwaysTrueOutput = new class extends Component {
+    tick(oldWorld: World): Component {
+      return undefined;
+    }
+
     output() {
       return true;
     }
