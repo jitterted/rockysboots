@@ -1,6 +1,6 @@
-import {OutputProvider} from "./OutputProvider";
+import {Component} from "./Component";
 
-export class Player implements OutputProvider {
+export class Player extends Component {
   output(): boolean {
     return true;
   }

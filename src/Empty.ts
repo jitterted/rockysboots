@@ -1,6 +1,6 @@
-import {OutputProvider} from "./OutputProvider";
+import {Component} from "./Component";
 
-export class Empty implements OutputProvider {
+export class Empty extends Component {
   output(): boolean {
     return false;
   }

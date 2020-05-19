@@ -1,18 +1,25 @@
-import {OutputProvider} from "./OutputProvider";
+import {Component} from "./Component";
+import {World} from "./World";
 
-export class Wire implements OutputProvider {
+export class Wire extends Component {
   state: boolean = false;
-  input: OutputProvider;
+  inputId: string;
 
-  connect(input: OutputProvider): void {
-    this.input = input;
+  constructor(id: string, inputId?: string, state?: boolean) {
+    super(id);
+    this.inputId = inputId;
+    this.state = state || false;
+  }
+
+  connect(inputId: string): void {
+    this.inputId = inputId;
   }
 
   output(): boolean {
     return this.state;
   }
 
-  tick(): void {
-    this.state = this.input.output();
+  tick(oldWorld: World): Component {
+    return new Wire(this.id, this.inputId, oldWorld.find(this.inputId).output());
   }
 }

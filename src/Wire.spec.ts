@@ -1,6 +1,7 @@
-import {Player} from "./Player";
 import {Empty} from "./Empty";
 import {Wire} from "./Wire";
+import {World} from "./World";
+import {Component} from "./Component";
 
 // test('electricity from input after no cycles is not yet at output', () => {
 //   const wire = new Wire();
@@ -17,12 +18,12 @@ import {Wire} from "./Wire";
 //   expect(wire.output()).toBeTruthy();
 // });
 
-function tickAll(player: Player, empty: Empty, wire1: Wire, wire2: Wire) {
-  player.tick();
-  empty.tick();
-  wire1.tick();
-  wire2.tick();
-}
+// function tickAll(player: Player, empty: Empty, wire1: Wire, wire2: Wire) {
+//   player.tick();
+//   empty.tick();
+//   wire1.tick();
+//   wire2.tick();
+// }
 
 /*
 
@@ -47,46 +48,63 @@ function tickAll(player: Player, empty: Empty, wire1: Wire, wire2: Wire) {
  F<----F F<-----F [E]
 
 */
-test('2 cycle/tick propagation', () => {
-  const player = new Player();
-  const empty = new Empty();
-  const wire1 = new Wire();
-  const wire2 = new Wire();
+// test('2 cycle/tick propagation', () => {
+//   const player = new Player();
+//   const empty = new Empty();
+//   const wire1 = new Wire();
+//   const wire2 = new Wire();
+//
+//   wire2.connect(wire1);
+//
+//   expect(wire1.output()).toBeFalsy();
+//   expect(wire2.output()).toBeFalsy();
+//
+//   wire1.connect(player);
+//
+//   tickAll(player, empty, wire1, wire2);
+//
+//   expect(wire1.output()).toBeTruthy();
+//   expect(wire2.output()).toBeFalsy();
+//
+//   tickAll(player, empty, wire1, wire2);
+//
+//   expect(wire1.output()).toBeTruthy();
+//   expect(wire2.output()).toBeTruthy();
+//
+//   wire1.connect(empty);
+//
+//   tickAll(player, empty, wire1, wire2);
+//
+//   expect(wire1.output()).toBeFalsy();
+//   expect(wire2.output()).toBeTruthy();
+//
+//   tickAll(player, empty, wire1, wire2);
+//
+//   expect(wire1.output()).toBeFalsy();
+//   expect(wire2.output()).toBeFalsy();
+// });
 
-  wire2.connect(wire1);
+test("wire returns new wire instance with updated state based on old world", () => {
+  const wire = new Wire('73');
+  const alwaysTrueOutput = new class extends Component {
+    output() {
+      return true;
+    }
+  }('ignore');
 
-  expect(wire1.output()).toBeFalsy();
-  expect(wire2.output()).toBeFalsy();
-
-  wire1.connect(player);
-
-  tickAll(player, empty, wire1, wire2);
-
-  expect(wire1.output()).toBeTruthy();
-  expect(wire2.output()).toBeFalsy();
-
-  tickAll(player, empty, wire1, wire2);
-
-  expect(wire1.output()).toBeTruthy();
-  expect(wire2.output()).toBeTruthy();
-
-  wire1.connect(empty);
-
-  tickAll(player, empty, wire1, wire2);
-
-  expect(wire1.output()).toBeFalsy();
-  expect(wire2.output()).toBeTruthy();
-
-  tickAll(player, empty, wire1, wire2);
-
-  expect(wire1.output()).toBeFalsy();
-  expect(wire2.output()).toBeFalsy();
-});
+  const oldWorld = new class extends World {
+    find(id: string) {
+      return alwaysTrueOutput;
+    }
+  }();
+  const nextCycleWire: Component = wire.tick(oldWorld);
+  expect(nextCycleWire.output()).toBeTruthy();
+})
 
 test('with no player, wire output has no electricity', () => {
-  const wire = new Wire();
-  const player = new Empty();
-  wire.connect(player);
+  const wire = new Wire('ignore');
+  const empty = new Empty('ignore');
+  wire.connect(empty.id);
   expect(wire.output()).toBeFalsy();
 });
 
