@@ -3,7 +3,8 @@
     "outDir": "dist",
     "module": "esnext",
     "target": "esnext",
-    "strict": false,
+    "strict": true,
+    "noImplicitAny": true,
     "sourceMap": true,
     "lib": [
       "esnext",

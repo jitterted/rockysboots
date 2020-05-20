@@ -22,4 +22,8 @@ export class World {
 
     return newWorld;
   }
+
+  components() {
+    return this.componentMap.values();
+  }
 }
