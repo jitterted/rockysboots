@@ -9,7 +9,7 @@ const ctx = canvas.getContext('2d');
 
 const world = new World();
 const player = new Player({id: '1'}, {x: 4, y: 10});
-const wire = new Wire({id: '2'});
+const wire = new Wire({id: '2'}, player.id);
 wire.moveTo({x: 6, y: 10});
 
 world.add(player);

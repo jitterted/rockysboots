@@ -3,10 +3,11 @@ import {worldDimensionToCanvasCoordinates, worldLocationToCanvasCoordinates} fro
 import {WorldDimension} from "./WorldDimension";
 
 export class WireShape {
-  private color = 'white';
+  private colorWithElectricity = 'white';
+  private colorWithoutElectricity = 'orange';
 
   private worldDimension: WorldDimension = {
-    width: 2,
+    width: 3,
     height: 2
   };
 
@@ -15,12 +16,16 @@ export class WireShape {
     const dimension = worldDimensionToCanvasCoordinates(this.worldDimension);
 
     canvasContext.beginPath();
-    canvasContext.strokeStyle = this.color;
-    canvasContext.lineWidth = 2;
+    if (component.output()) {
+      canvasContext.strokeStyle = this.colorWithElectricity;
+    } else {
+      canvasContext.strokeStyle = this.colorWithoutElectricity;
+    }
+    canvasContext.lineWidth = 5;
 
     const midpointY = location.y + dimension.height / 2;
-    canvasContext.moveTo(location.x, midpointY)
-    canvasContext.lineTo(location.x + dimension.width, midpointY)
+    canvasContext.moveTo(location.x, midpointY);
+    canvasContext.lineTo(location.x + dimension.width, midpointY);
 
     canvasContext.stroke();
   }
