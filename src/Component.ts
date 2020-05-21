@@ -22,4 +22,8 @@ export abstract class Component {
   getWorldLocation(): WorldLocation {
     return this.worldLocation;
   }
+
+  moveTo(worldLocation: WorldLocation) {
+    this.worldLocation = worldLocation;
+  }
 }
