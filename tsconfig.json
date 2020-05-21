@@ -3,8 +3,8 @@
     "outDir": "dist",
     "module": "esnext",
     "target": "esnext",
-    "strict": true,
-    "noImplicitAny": true,
+    "strict": false,
+    "noImplicitAny": false,
     "sourceMap": true,
     "lib": [
       "esnext",
@@ -14,10 +14,10 @@
     ]
   },
   "include": [
-    "src/**/*.ts",
-    "tests/**/*.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/**/*.spec.ts"
   ]
 }
