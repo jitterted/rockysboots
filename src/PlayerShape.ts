@@ -1,16 +1,20 @@
 import {Component} from "./Component";
 import {worldDimensionToCanvasCoordinates, worldLocationToCanvasCoordinates} from "./Geometry";
+import {WorldDimension} from "./WorldDimension";
 
 export class PlayerShape {
-  render(canvasContext: CanvasRenderingContext2D, component: Component) {
-    canvasContext.fillStyle = 'orange';
-    const worldDimension = {
-      width: 2,
-      height: 3
-    };
+  private color = 'orange';
 
-    const loc = worldLocationToCanvasCoordinates(component.worldLocation);
-    const dimension = worldDimensionToCanvasCoordinates(worldDimension);
-    canvasContext.fillRect(loc.x, loc.y, dimension.width, dimension.height);
+  private worldDimension: WorldDimension = {
+    width: 2,
+    height: 3
+  };
+
+  render(canvasContext: CanvasRenderingContext2D, component: Component) {
+    const location = worldLocationToCanvasCoordinates(component.worldLocation);
+    const dimension = worldDimensionToCanvasCoordinates(this.worldDimension);
+
+    canvasContext.fillStyle = this.color;
+    canvasContext.fillRect(location.x, location.y, dimension.width, dimension.height);
   }
 }

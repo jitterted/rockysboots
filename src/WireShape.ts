@@ -1,21 +1,27 @@
 import {Wire} from "./Wire";
 import {worldDimensionToCanvasCoordinates, worldLocationToCanvasCoordinates} from "./Geometry";
+import {WorldDimension} from "./WorldDimension";
 
 export class WireShape {
-  render(canvasContext: CanvasRenderingContext2D, component: Wire) {
-    const worldDimension = {
-      width: 2,
-      height: 2
-    };
+  private color = 'white';
 
-    const loc = worldLocationToCanvasCoordinates(component.worldLocation);
-    const dimension = worldDimensionToCanvasCoordinates(worldDimension);
+  private worldDimension: WorldDimension = {
+    width: 2,
+    height: 2
+  };
+
+  render(canvasContext: CanvasRenderingContext2D, component: Wire) {
+    const location = worldLocationToCanvasCoordinates(component.worldLocation);
+    const dimension = worldDimensionToCanvasCoordinates(this.worldDimension);
 
     canvasContext.beginPath();
-    canvasContext.strokeStyle = 'white';
+    canvasContext.strokeStyle = this.color;
     canvasContext.lineWidth = 2;
-    canvasContext.moveTo(loc.x, loc.y + dimension.height / 2)
-    canvasContext.lineTo(loc.x + dimension.width, loc.y + dimension.height / 2)
+
+    const midpointY = location.y + dimension.height / 2;
+    canvasContext.moveTo(location.x, midpointY)
+    canvasContext.lineTo(location.x + dimension.width, midpointY)
+
     canvasContext.stroke();
   }
 }
