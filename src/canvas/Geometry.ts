@@ -1,5 +1,5 @@
-import {WorldLocation} from "./WorldLocation";
-import {WorldDimension} from "./WorldDimension";
+import {WorldLocation} from "../WorldLocation";
+import {WorldDimension} from "../WorldDimension";
 import {CanvasLocation} from "./CanvasLocation";
 import {CanvasDimension} from "./CanvasDimension";
 

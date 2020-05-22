@@ -1,6 +1,6 @@
-import {Component} from "./Component";
+import {WorldDimension} from "../WorldDimension";
+import {Component} from "../Component";
 import {worldDimensionToCanvasCoordinates, worldLocationToCanvasCoordinates} from "./Geometry";
-import {WorldDimension} from "./WorldDimension";
 
 export class PlayerShape {
   private color = 'orange';

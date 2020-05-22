@@ -1,6 +1,6 @@
-import {Wire} from "./Wire";
+import {WorldDimension} from "../WorldDimension";
+import {Wire} from "../Wire";
 import {worldDimensionToCanvasCoordinates, worldLocationToCanvasCoordinates} from "./Geometry";
-import {WorldDimension} from "./WorldDimension";
 
 export class WireShape {
   private colorWithElectricity = 'white';

@@ -1,8 +1,8 @@
 import {World} from "./World";
 import {Player} from "./Player";
 import {Wire} from "./Wire";
-import {PlayerShape} from "./PlayerShape";
-import {WireShape} from "./WireShape";
+import {PlayerShape} from "./canvas/PlayerShape";
+import {WireShape} from "./canvas/WireShape";
 
 const canvas = document.getElementById('world') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
