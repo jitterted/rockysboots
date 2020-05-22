@@ -21,6 +21,8 @@ export class Wire extends Component {
   }
 
   tick(oldWorld: World): Component {
-    return new Wire(this.id, this.inputId, oldWorld.find(this.inputId).output());
+    let wire = new Wire(this.id, this.inputId, oldWorld.find(this.inputId).output());
+    wire.worldLocation = this.worldLocation;
+    return wire;
   }
 }

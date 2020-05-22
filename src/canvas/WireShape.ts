@@ -14,6 +14,7 @@ export class WireShape extends Shape {
     const dimension = worldDimensionToCanvasCoordinates(this.worldDimension);
 
     canvasContext.beginPath();
+
     canvasContext.strokeStyle = this.getColor();
     canvasContext.lineWidth = 5;
 
