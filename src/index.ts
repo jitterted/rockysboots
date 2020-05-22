@@ -19,9 +19,9 @@ function render(canvasContext: CanvasRenderingContext2D, world: World) {
   let components = world.components();
   for (let component of components) {
     if (component instanceof Player) {
-      new PlayerShape().render(canvasContext, component);
+      new PlayerShape(component).render(canvasContext);
     } else if (component instanceof Wire) {
-      new WireShape().render(canvasContext, component);
+      new WireShape(component).render(canvasContext);
     }
   }
 }

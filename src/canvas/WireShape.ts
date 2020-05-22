@@ -1,26 +1,20 @@
 import {WorldDimension} from "../WorldDimension";
-import {Wire} from "../Wire";
 import {worldDimensionToCanvasCoordinates, worldLocationToCanvasCoordinates} from "./Geometry";
+import {Shape} from "./Shape";
 
-export class WireShape {
-  private colorWithElectricity = 'white';
-  private colorWithoutElectricity = 'orange';
+export class WireShape extends Shape {
 
   private worldDimension: WorldDimension = {
     width: 3,
     height: 2
   };
 
-  render(canvasContext: CanvasRenderingContext2D, component: Wire) {
-    const location = worldLocationToCanvasCoordinates(component.worldLocation);
+  render(canvasContext: CanvasRenderingContext2D) {
+    const location = worldLocationToCanvasCoordinates(this.component.worldLocation);
     const dimension = worldDimensionToCanvasCoordinates(this.worldDimension);
 
     canvasContext.beginPath();
-    if (component.output()) {
-      canvasContext.strokeStyle = this.colorWithElectricity;
-    } else {
-      canvasContext.strokeStyle = this.colorWithoutElectricity;
-    }
+    canvasContext.strokeStyle = this.getColor();
     canvasContext.lineWidth = 5;
 
     const midpointY = location.y + dimension.height / 2;
