@@ -10,6 +10,10 @@ export class Wire extends Component {
     super(id);
     this.inputId = inputId;
     this.state = state || false;
+    super.worldDimension = {
+      width: 3,
+      height: 2
+    };
   }
 
   connect(input: Component): void {

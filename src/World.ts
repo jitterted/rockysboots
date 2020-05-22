@@ -1,9 +1,14 @@
 import {Component} from "./Component";
 import {ComponentId} from "./ComponentId";
+import {WorldDimension} from "./WorldDimension";
 
 export class World {
 
   private componentMap: Map<string, Component> = new Map();
+  private dimension: {
+    width: 60,
+    height: 40
+  };
 
   add(component: Component) {
     this.componentMap.set(component.id.id, component);
@@ -23,7 +28,11 @@ export class World {
     return newWorld;
   }
 
-  components() {
+  components(): IterableIterator<Component> {
     return this.componentMap.values();
+  }
+
+  getDimension(): WorldDimension {
+    return this.dimension;
   }
 }

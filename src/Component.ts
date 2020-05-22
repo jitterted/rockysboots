@@ -1,10 +1,12 @@
 import {ComponentId} from "./ComponentId";
 import {World} from "./World";
 import {WorldLocation} from "./WorldLocation";
+import {WorldDimension} from "./WorldDimension";
 
 export abstract class Component {
   id: ComponentId;
   worldLocation: WorldLocation;
+  worldDimension: WorldDimension;
 
   constructor(id: ComponentId, worldLocation?: WorldLocation) {
     this.id = id;

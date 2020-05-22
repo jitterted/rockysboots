@@ -1,18 +1,10 @@
-import {WorldDimension} from "../WorldDimension";
-import {worldDimensionToCanvasCoordinates, worldLocationToCanvasCoordinates} from "./Geometry";
 import {Shape} from "./Shape";
+import {CanvasLocation} from "./CanvasLocation";
+import {CanvasDimension} from "./CanvasDimension";
 
 export class WireShape extends Shape {
 
-  private worldDimension: WorldDimension = {
-    width: 3,
-    height: 2
-  };
-
-  render(canvasContext: CanvasRenderingContext2D) {
-    const location = worldLocationToCanvasCoordinates(this.component.worldLocation);
-    const dimension = worldDimensionToCanvasCoordinates(this.worldDimension);
-
+  protected innerRender(canvasContext: CanvasRenderingContext2D, location: CanvasLocation, dimension: CanvasDimension) {
     canvasContext.beginPath();
 
     canvasContext.strokeStyle = this.getColor();
