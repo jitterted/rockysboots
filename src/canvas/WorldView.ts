@@ -3,8 +3,9 @@ import {Player} from "../Player";
 import {PlayerShape} from "./PlayerShape";
 import {Wire} from "../Wire";
 import {WireShape} from "./WireShape";
+import {View} from "../View";
 
-export class WorldView {
+export class WorldView implements View {
   private readonly canvas: HTMLCanvasElement;
   private readonly ctx: CanvasRenderingContext2D;
 
