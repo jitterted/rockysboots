@@ -9,4 +9,20 @@ export class Player extends Component {
   tick(oldWorld: World): Component {
     return this;
   }
+
+  moveLeft() {
+    this.worldLocation.x--;
+  }
+
+  moveUp() {
+    this.worldLocation.y--;
+  }
+
+  moveRight() {
+    this.worldLocation.x++;
+  }
+
+  moveDown() {
+    this.worldLocation.y++;
+  }
 }
