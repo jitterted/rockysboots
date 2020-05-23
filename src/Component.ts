@@ -5,12 +5,12 @@ import {WorldDimension} from "./WorldDimension";
 
 export abstract class Component {
   id: ComponentId;
-  worldLocation: WorldLocation;
-  worldDimension: WorldDimension;
+  protected myWorldLocation: WorldLocation;
+  protected myWorldDimension: WorldDimension;
 
   constructor(id: ComponentId, worldLocation?: WorldLocation) {
     this.id = id;
-    this.worldLocation = worldLocation || {x: 0, y: 0};
+    this.myWorldLocation = worldLocation || {x: 0, y: 0};
   }
 
   abstract output(): boolean;
@@ -21,11 +21,15 @@ export abstract class Component {
     // do nothing
   }
 
-  getWorldLocation(): WorldLocation {
-    return this.worldLocation;
+  worldLocation(): WorldLocation {
+    return this.myWorldLocation;
   }
 
   moveTo(worldLocation: WorldLocation) {
-    this.worldLocation = worldLocation;
+    this.myWorldLocation = worldLocation;
+  }
+
+  worldDimension() {
+    return this.myWorldDimension;
   }
 }

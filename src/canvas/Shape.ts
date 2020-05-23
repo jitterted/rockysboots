@@ -14,8 +14,8 @@ export abstract class Shape {
   }
 
   render(canvasContext: CanvasRenderingContext2D) {
-    const location = worldLocationToCanvasCoordinates(this.component.worldLocation);
-    const dimension = worldDimensionToCanvasCoordinates(this.component.worldDimension);
+    const location = worldLocationToCanvasCoordinates(this.component.worldLocation());
+    const dimension = worldDimensionToCanvasCoordinates(this.component.worldDimension());
     this.innerRender(canvasContext, location, dimension);
   }
 

@@ -10,7 +10,7 @@ export class Wire extends Component {
     super(id);
     this.inputId = inputId;
     this.state = state || false;
-    super.worldDimension = {
+    super.myWorldDimension = {
       width: 3,
       height: 2
     };
@@ -26,7 +26,7 @@ export class Wire extends Component {
 
   tick(oldWorld: World): Component {
     let wire = new Wire(this.id, this.inputId, oldWorld.find(this.inputId).output());
-    wire.worldLocation = this.worldLocation;
+    wire.myWorldLocation = this.myWorldLocation;
     return wire;
   }
 }

@@ -5,9 +5,9 @@ import {WorldLocation} from "./WorldLocation";
 
 export class Player extends Component {
 
-  constructor(id: ComponentId, worldLocation: WorldLocation) {
+  constructor(id: ComponentId, worldLocation?: WorldLocation) {
     super(id, worldLocation);
-    super.worldDimension = {
+    super.myWorldDimension = {
       width: 2,
       height: 3
     };
@@ -22,24 +22,24 @@ export class Player extends Component {
   }
 
   moveLeft() {
-    if (this.worldLocation.x == 0)
+    if (this.myWorldLocation.x == 0)
       return;
-    this.worldLocation.x--;
+    this.myWorldLocation.x--;
   }
 
   moveUp() {
-    if (this.worldLocation.y == 0)
+    if (this.myWorldLocation.y == 0)
       return;
-    this.worldLocation.y--;
+    this.myWorldLocation.y--;
   }
 
   moveRight() {
     // TODO: check boundary condition
-    this.worldLocation.x++;
+    this.myWorldLocation.x++;
   }
 
   moveDown() {
     // TODO: check boundary condition
-    this.worldLocation.y++;
+    this.myWorldLocation.y++;
   }
 }
