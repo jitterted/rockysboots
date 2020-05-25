@@ -4,16 +4,18 @@ import {CanvasDimension} from "./CanvasDimension";
 
 export class WireShape extends Shape {
 
-  protected innerRender(canvasContext: CanvasRenderingContext2D, location: CanvasLocation, dimension: CanvasDimension) {
-    canvasContext.beginPath();
+  protected innerRender(canvasContext: CanvasRenderingContext2D,
+                        location: CanvasLocation,
+                        dimension: CanvasDimension,
+                        surface: Surface) {
 
-    canvasContext.strokeStyle = this.getColor();
     canvasContext.lineWidth = 5;
 
     const midpointY = location.y + dimension.height / 2;
-    canvasContext.moveTo(location.x, midpointY);
-    canvasContext.lineTo(location.x + dimension.width, midpointY);
+    const locationStart = {x: location.x, y: midpointY};
+    const locationEnd = {x: location.x + dimension.width, y: midpointY};
 
-    canvasContext.stroke();
+    surface.drawLine(locationStart, locationEnd, this.getColor());
   }
+
 }
