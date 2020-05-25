@@ -1,15 +1,16 @@
 import {Shape} from "./Shape";
 import {CanvasLocation} from "./CanvasLocation";
 import {CanvasDimension} from "./CanvasDimension";
+import {Surface} from "./Surface";
 
 export class WireShape extends Shape {
 
-  protected innerRender(canvasContext: CanvasRenderingContext2D,
+  protected innerRender(surface: Surface,
                         location: CanvasLocation,
-                        dimension: CanvasDimension,
-                        surface: Surface) {
+                        dimension: CanvasDimension) {
 
-    canvasContext.lineWidth = 5;
+    const lineWidth = 5; // 5 seemed like thick enough? final value TBD
+    surface.lineWidth(lineWidth);
 
     const midpointY = location.y + dimension.height / 2;
     const locationStart = {x: location.x, y: midpointY};
@@ -17,5 +18,4 @@ export class WireShape extends Shape {
 
     surface.drawLine(locationStart, locationEnd, this.getColor());
   }
-
 }

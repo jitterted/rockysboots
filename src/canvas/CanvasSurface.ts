@@ -1,8 +1,8 @@
 import {CanvasLocation} from "./CanvasLocation";
 import {Surface} from "./Surface";
+import {CanvasDimension} from "./CanvasDimension";
 
 export class CanvasSurface implements Surface {
-
   private readonly canvasContext: CanvasRenderingContext2D;
 
   constructor(canvasContext: CanvasRenderingContext2D) {
@@ -15,6 +15,15 @@ export class CanvasSurface implements Surface {
     this.canvasContext.moveTo(locationStart.x, locationStart.y);
     this.canvasContext.lineTo(locationEnd.x, locationEnd.y);
     this.canvasContext.stroke();
+  }
+
+  public lineWidth(lineWidth: number) {
+    this.canvasContext.lineWidth = lineWidth;
+  }
+
+  fillRectangle(location: CanvasLocation, dimension: CanvasDimension, color: string): void {
+    this.canvasContext.fillStyle = color;
+    this.canvasContext.fillRect(location.x, location.y, dimension.width, dimension.height);
   }
 
 }

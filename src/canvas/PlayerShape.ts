@@ -1,11 +1,11 @@
 import {Shape} from "./Shape";
 import {CanvasLocation} from "./CanvasLocation";
 import {CanvasDimension} from "./CanvasDimension";
+import {Surface} from "./Surface";
 
 export class PlayerShape extends Shape {
 
-  protected innerRender(canvasContext: CanvasRenderingContext2D, location: CanvasLocation, dimension: CanvasDimension) {
-    canvasContext.fillStyle = this.getColor();
-    canvasContext.fillRect(location.x, location.y, dimension.width, dimension.height);
+  protected innerRender(surface: Surface, location: CanvasLocation, dimension: CanvasDimension) {
+    surface.fillRectangle(location, dimension, this.getColor());
   }
 }

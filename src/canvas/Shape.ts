@@ -18,13 +18,12 @@ export abstract class Shape {
   render(canvasContext: CanvasRenderingContext2D) {
     const location = worldLocationToCanvasCoordinates(this.component.worldLocation());
     const dimension = worldDimensionToCanvasCoordinates(this.component.worldDimension());
-    this.innerRender(canvasContext, location, dimension, new CanvasSurface(canvasContext));
+    this.innerRender(new CanvasSurface(canvasContext), location, dimension);
   }
 
-  protected abstract innerRender(canvasContext: CanvasRenderingContext2D,
+  protected abstract innerRender(surface: Surface,
                                  location: CanvasLocation,
-                                 dimension: CanvasDimension,
-                                 surface: Surface);
+                                 dimension: CanvasDimension);
 
   protected getColor(): string {
     return this.component.output()
