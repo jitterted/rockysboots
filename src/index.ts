@@ -3,6 +3,9 @@ import {Game} from "./Game";
 import {CanvasSurface} from "./canvas/CanvasSurface";
 
 const canvas = document.getElementById('world') as HTMLCanvasElement;
+if (!canvas) {
+  throw new Error("Can't find canvas with ID of 'world'");
+}
 const surface = new CanvasSurface(canvas);
 const worldView = new WorldView(surface);
 

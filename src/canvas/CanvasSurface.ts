@@ -7,7 +7,7 @@ export class CanvasSurface implements Surface {
   private readonly canvasDimension: CanvasDimension;
 
   constructor(canvas: HTMLCanvasElement) {
-    this.canvasContext = canvas.getContext("2D") as CanvasRenderingContext2D;
+    this.canvasContext = canvas.getContext("2d");
     if (!this.canvasContext) {
       throw new Error("Could not get Context2D.");
     }
