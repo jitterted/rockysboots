@@ -1,8 +1,10 @@
 import {WorldView} from "./canvas/WorldView";
 import {Game} from "./Game";
+import {CanvasSurface} from "./canvas/CanvasSurface";
 
 const canvas = document.getElementById('world') as HTMLCanvasElement;
-const worldView = new WorldView(canvas);
+const surface = new CanvasSurface(canvas);
+const worldView = new WorldView(surface);
 
 const game = new Game(worldView);
 game.init();

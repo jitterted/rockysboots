@@ -3,7 +3,6 @@ import {worldDimensionToCanvasCoordinates, worldLocationToCanvasCoordinates} fro
 import {CanvasDimension} from "./CanvasDimension";
 import {CanvasLocation} from "./CanvasLocation";
 import {Surface} from "./Surface";
-import {CanvasSurface} from "./CanvasSurface";
 
 export abstract class Shape {
   private static readonly colorWithElectricity = 'orange';
@@ -15,10 +14,10 @@ export abstract class Shape {
     this.component = component;
   }
 
-  render(canvasContext: CanvasRenderingContext2D) {
+  render(surface: Surface) {
     const location = worldLocationToCanvasCoordinates(this.component.worldLocation());
     const dimension = worldDimensionToCanvasCoordinates(this.component.worldDimension());
-    this.innerRender(new CanvasSurface(canvasContext), location, dimension);
+    this.innerRender(surface, location, dimension);
   }
 
   protected abstract innerRender(surface: Surface,

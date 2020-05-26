@@ -4,29 +4,24 @@ import {PlayerShape} from "./PlayerShape";
 import {Wire} from "../Wire";
 import {WireShape} from "./WireShape";
 import {View} from "../View";
+import {Surface} from "./Surface";
 
 export class WorldView implements View {
-  private readonly canvas: HTMLCanvasElement;
-  private readonly ctx: CanvasRenderingContext2D;
+  private readonly surface: Surface;
 
-  constructor(canvas: HTMLCanvasElement) {
-    this.canvas = canvas;
-    this.ctx = this.canvas.getContext('2d');
-
-    if (!this.ctx) {
-      throw new Error("Could not get Context2D");
-    }
+  constructor(surface: Surface) {
+    this.surface = surface;
   }
 
   public render(world: World) {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.surface.clear();
 
     let components = world.components();
     for (let component of components) {
       if (component instanceof Player) {
-        new PlayerShape(component).render(this.ctx);
+        new PlayerShape(component).render(this.surface);
       } else if (component instanceof Wire) {
-        new WireShape(component).render(this.ctx);
+        new WireShape(component).render(this.surface);
       }
     }
   }

@@ -7,4 +7,6 @@ export interface Surface {
   lineWidth(lineWidth: number): void;
 
   fillRectangle(location: CanvasLocation, dimension: CanvasDimension, color: string): void;
+
+  clear(): void;
 }

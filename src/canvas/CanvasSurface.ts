@@ -4,9 +4,14 @@ import {CanvasDimension} from "./CanvasDimension";
 
 export class CanvasSurface implements Surface {
   private readonly canvasContext: CanvasRenderingContext2D;
+  private readonly canvasDimension: CanvasDimension;
 
-  constructor(canvasContext: CanvasRenderingContext2D) {
-    this.canvasContext = canvasContext;
+  constructor(canvas: HTMLCanvasElement) {
+    this.canvasContext = canvas.getContext("2D") as CanvasRenderingContext2D;
+    if (!this.canvasContext) {
+      throw new Error("Could not get Context2D.");
+    }
+    this.canvasDimension = {width: canvas.width, height: canvas.height};
   }
 
   drawLine(locationStart: CanvasLocation, locationEnd: CanvasLocation, color: string) {
@@ -21,9 +26,13 @@ export class CanvasSurface implements Surface {
     this.canvasContext.lineWidth = lineWidth;
   }
 
-  fillRectangle(location: CanvasLocation, dimension: CanvasDimension, color: string): void {
+  public fillRectangle(location: CanvasLocation, dimension: CanvasDimension, color: string): void {
     this.canvasContext.fillStyle = color;
     this.canvasContext.fillRect(location.x, location.y, dimension.width, dimension.height);
+  }
+
+  public clear() {
+    this.canvasContext.clearRect(0, 0, this.canvasDimension.width, this.canvasDimension.height);
   }
 
 }
